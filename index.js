@@ -35,8 +35,6 @@ const end = `</div>
 const employees = [];
 
 function createFile() {
-  console.log("WIP");
-
   content += begin;
   for (let i = 0; i < employees.length; i++) {
     if (i % 3 == 0) {

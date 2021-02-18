@@ -38,10 +38,10 @@ function createFile() {
   content += begin;
   for (let i = 0; i < employees.length; i++) {
     if (i % 3 == 0) {
-      content += `<div class = "row">`;
+      content += `<div class = "row my-5">`;
     }
     let emp = employees[i];
-    let card = `<div class = "col">
+    let card = `<div class = "col-4">
         <div class = "card">
         <div class = "card-header bg-info">
         <h4 class = "card-title">

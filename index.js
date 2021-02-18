@@ -17,25 +17,58 @@ const begin = `<!DOCTYPE html>
       rel="stylesheet"
       href="./dist/style.css"
     />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
-<body>`;
+<body>
+<div class="container">`;
 
 let content = "";
 
-const end = `</body>
+const end = `</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
 </html>`;
 
 const employees = [];
 
 function createFile() {
   console.log("WIP");
+
   for (let i = 0; i < employees.length; i++) {
-    if (employees[i] instanceof Manager) {
+    if (i % 3 == 0) {
+      content += `<div class = "row">`;
+    }
+    let emp = employees[i];
+    let card = `<div class = "col">
+        <div class = "card">
+        <div class = "card-header">
+        <h4 class = "card-title">
+        ${emp.getName()}
+        </h4>
+        <h5 class = "card-title">
+        ${emp.getRole()}
+        </h5>
+        </div>
+
+        <div class = "card-body">
+        <p class = "card-text">ID: ${emp.getId()}</p>
+        <p class = "card-text">Email: <a href="${emp.getId()}">${emp.getId()}</a></p>`;
+    if (emp instanceof Manager) {
+      card += `<p class = "card-text">Office number: ${emp.getOfficeNumber()}</p>`;
       console.log("Manager");
-    } else if (employees[i] instanceof Engineer) {
+    } else if (emp instanceof Engineer) {
+      card += `<p class = "card-text">GitHub: <a href="https://github.com/${emp.getGithub()}">${emp.getGithub()}</a></p>`;
       console.log("Engineer");
     } else {
+      card += `<p class = "card-text">School: ${emp.getSchool()}</p>`;
       console.log("Intern");
+    }
+    card += `</div>
+    </div>
+    </div>`;
+    content += card;
+    if (i % 3 == 2 || i == employees.length - 1) {
+      content += `</div>`;
     }
   }
 }

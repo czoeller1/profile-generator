@@ -25,7 +25,7 @@ const end = `</body>
 
 const employees = [];
 
-function writeFile() {
+function createFile() {
   console.log("WIP");
 }
 
@@ -120,6 +120,7 @@ function empPrompt() {
           console.log(response.type);
           break;
         case "Finish":
+          createFile();
           return;
       }
     });

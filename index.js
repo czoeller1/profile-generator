@@ -25,6 +25,31 @@ const end = `</body>
 
 const employees = [];
 
+function empPrompt() {
+  console.log(employees);
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Select an employee type to add:",
+        name: "type",
+        choices: ["Engineer", "Intern", "Finish"],
+      },
+    ])
+    .then((response) => {
+      switch (response.type) {
+        case "Engineer":
+          console.log(response.type);
+          break;
+        case "Intern":
+          console.log(response.type);
+          break;
+        case "Finish":
+          return;
+      }
+    });
+}
+
 function manager() {
   inquirer
     .prompt([
@@ -53,30 +78,8 @@ function manager() {
       employees.push(
         new Manager(response.name, response.id, response.email, response.office)
       );
+      empPrompt();
     });
 }
 
-function empPrompt() {
-  console.log(employees);
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        message: "Select an employee type to add:",
-        name: "type",
-        choices: ["Engineer", "Intern", "Finish"],
-      },
-    ])
-    .then((response) => {
-      switch (response.type) {
-        case "Engineer":
-          console.log(response.type);
-          break;
-        case "Intern":
-          console.log(response.type);
-          break;
-        case "Finish":
-          return;
-      }
-    });
-}
+manager();

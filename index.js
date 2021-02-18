@@ -34,6 +34,7 @@ const employees = [];
 function createFile() {
   console.log("WIP");
 
+  content += begin;
   for (let i = 0; i < employees.length; i++) {
     if (i % 3 == 0) {
       content += `<div class = "row">`;
@@ -71,6 +72,10 @@ function createFile() {
       content += `</div>`;
     }
   }
+  content += end;
+  fs.writeFile("./dist/index.html", content, (err) =>
+    err ? console.error(err) : console.log("Success!")
+  );
 }
 
 function engPrompt() {

@@ -22,3 +22,61 @@ const begin = `<!DOCTYPE html>
 
 const end = `</body>
 </html>`;
+
+const employees = [];
+
+function manager() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the name of your Project manager?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is the id of your Project manager?",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "What is the email of your Project manager?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is the office number of your Project manager?",
+        name: "office",
+      },
+    ])
+    .then((response) => {
+      employees.push(
+        new Manager(response.name, response.id, response.email, response.office)
+      );
+    });
+}
+
+function empPrompt() {
+  console.log(employees);
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Select an employee type to add:",
+        name: "type",
+        choices: ["Engineer", "Intern", "Finish"],
+      },
+    ])
+    .then((response) => {
+      switch (response.type) {
+        case "Engineer":
+          console.log(response.type);
+          break;
+        case "Intern":
+          console.log(response.type);
+          break;
+        case "Finish":
+          return;
+      }
+    });
+}

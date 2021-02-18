@@ -1,6 +1,6 @@
-const Manager = require("./manager");
-const Engineer = require("./engineer");
-const Intern = require("./intern");
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
 
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -25,6 +25,79 @@ const end = `</body>
 
 const employees = [];
 
+function writeFile() {
+  console.log("WIP");
+}
+
+function engPrompt() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the name of your new engineer?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is the id of your new engineer?",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "What is the email of your new engineer?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is the github username of your new engineer?",
+        name: "github",
+      },
+    ])
+    .then((response) => {
+      employees.push(
+        new Engineer(
+          response.name,
+          response.id,
+          response.email,
+          response.github
+        )
+      );
+      empPrompt();
+    });
+}
+
+function intPrompt() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the name of your new intern?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is the id of your new intern?",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "What is the email of your new intern?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is the name of the school of your new intern?",
+        name: "school",
+      },
+    ])
+    .then((response) => {
+      employees.push(
+        new Intern(response.name, response.id, response.email, response.school)
+      );
+      empPrompt();
+    });
+}
+
 function empPrompt() {
   console.log(employees);
   inquirer
@@ -39,9 +112,11 @@ function empPrompt() {
     .then((response) => {
       switch (response.type) {
         case "Engineer":
+          engPrompt();
           console.log(response.type);
           break;
         case "Intern":
+          intPrompt();
           console.log(response.type);
           break;
         case "Finish":

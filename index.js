@@ -20,6 +20,8 @@ const begin = `<!DOCTYPE html>
 </head>
 <body>`;
 
+let content = "";
+
 const end = `</body>
 </html>`;
 
@@ -27,6 +29,15 @@ const employees = [];
 
 function createFile() {
   console.log("WIP");
+  for (let i = 0; i < employees.length; i++) {
+    if (employees[i] instanceof Manager) {
+      console.log("Manager");
+    } else if (employees[i] instanceof Engineer) {
+      console.log("Engineer");
+    } else {
+      console.log("Intern");
+    }
+  }
 }
 
 function engPrompt() {
@@ -99,7 +110,6 @@ function intPrompt() {
 }
 
 function empPrompt() {
-  console.log(employees);
   inquirer
     .prompt([
       {
@@ -113,11 +123,9 @@ function empPrompt() {
       switch (response.type) {
         case "Engineer":
           engPrompt();
-          console.log(response.type);
           break;
         case "Intern":
           intPrompt();
-          console.log(response.type);
           break;
         case "Finish":
           createFile();

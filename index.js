@@ -38,7 +38,7 @@ function createFile() {
   content += begin;
   for (let i = 0; i < employees.length; i++) {
     if (i % 3 == 0) {
-      content += `<div class = "row my-5">`;
+      content += `<div class = "row my-5 d-flex justify-content-evenly">`;
     }
     let emp = employees[i];
     let card = `<div class = "col-4">

@@ -20,6 +20,9 @@ const begin = `<!DOCTYPE html>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body>
+<header>
+      <h4 class="text-center py-5 mb-5 bg-danger">My Team</h4>
+    </header>
 <div class="container">`;
 
 let content = "";
@@ -42,7 +45,7 @@ function createFile() {
     let emp = employees[i];
     let card = `<div class = "col">
         <div class = "card">
-        <div class = "card-header">
+        <div class = "card-header bg-info">
         <h4 class = "card-title">
         ${emp.getName()}
         </h4>
@@ -53,16 +56,13 @@ function createFile() {
 
         <div class = "card-body">
         <p class = "card-text">ID: ${emp.getId()}</p>
-        <p class = "card-text">Email: <a href="${emp.getId()}">${emp.getId()}</a></p>`;
+        <p class = "card-text">Email: <a href="mailto:${emp.getEmail()}">${emp.getEmail()}</a></p>`;
     if (emp instanceof Manager) {
       card += `<p class = "card-text">Office number: ${emp.getOfficeNumber()}</p>`;
-      console.log("Manager");
     } else if (emp instanceof Engineer) {
-      card += `<p class = "card-text">GitHub: <a href="https://github.com/${emp.getGithub()}">${emp.getGithub()}</a></p>`;
-      console.log("Engineer");
+      card += `<p class = "card-text">GitHub: <a target = "blank" href="https://github.com/${emp.getGithub()}">${emp.getGithub()}</a></p>`;
     } else {
       card += `<p class = "card-text">School: ${emp.getSchool()}</p>`;
-      console.log("Intern");
     }
     card += `</div>
     </div>
